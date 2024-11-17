@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# front_3rd_chapter4-1
 
-## Getting Started
+## 프론트엔드 배포 파이프라인
 
-First, run the development server:
+### 개요
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+![배포 파이프라인](./pipeline.png)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. main 브랜치에 push하면 배포 workflow가 실행됩니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. 먼저 저장소를 체크아웃합니다.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. 프로젝트의 의존성을 설치합니다.
 
-## Learn More
+4. Next.js 프로젝트를 빌드합니다. 결과물은 out/ 디렉토리에 생성됩니다.
 
-To learn more about Next.js, take a look at the following resources:
+5. AWS 자격 증명을 구성합니다.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+6. 빌드된 파일을 S3 버킷에 업로드합니다.
+`--delete` 옵션을 통해서 로컬에는 없지만 S3 버킷에는 있는 파일을 삭제합니다.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+7. CloudFront 캐시를 무효화합니다.
 
-## Deploy on Vercel
+### 주요 링크
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- S3 버킷 웹사이트 엔드포인트: http://hhplus-front-chapter4-1.s3-website.us-east-2.amazonaws.com/
+- CloudFrount 배포 도메인 이름: https://ddvugb583g6p.cloudfront.net/
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 주요 개념
+
+- GitHub Actions과 CI/CD 도구: 
+- S3와 스토리지: 
+- CloudFront와 CDN: 
+- 캐시 무효화(Cache Invalidation): 
+- Repository secret과 환경변수: 
